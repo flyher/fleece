@@ -1,6 +1,6 @@
 import * as React from 'react';
 import axios from 'axios';
-import { CardComponent } from '../card/card';
+import { CardComponent } from '../components/card/card';
 import './fleece.less';
 import * as moment from 'moment';
 
@@ -116,9 +116,12 @@ export class FleeceComponent extends React.Component {
   }
 
   render(): any {
+    let cards = this.state['repos'].map((repo: any) => {
+      return <CardComponent children={repo} />
+    });
     return (
       <div className="fleece-component">
-        <CardComponent />
+        {cards}
       </div>
     )
   }

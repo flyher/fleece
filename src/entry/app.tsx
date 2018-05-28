@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 
 import { Header } from '../components/shared/header'
 import { Footer } from '../components/shared/footer';
-import { FleeceComponent } from '../components/fleece/fleece';
+import { FleeceComponent } from '../fleece/fleece';
 
 ReactDOM.render(
   <div>
