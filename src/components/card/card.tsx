@@ -1,7 +1,7 @@
 import * as React from 'react';
-import './card.less';
+// import './card.less';
 
-export default class CardComponent extends React.Component {
+export class CardComponent extends React.Component {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -14,7 +14,7 @@ export default class CardComponent extends React.Component {
   render() {
     return (
       <div className="card-component">
-        
+        111
       </div>
     )
   }

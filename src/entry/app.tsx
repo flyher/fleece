@@ -3,15 +3,12 @@ import * as ReactDOM from 'react-dom';
 
 import { Header } from '../components/shared/header'
 import { Footer } from '../components/shared/footer';
-import { AutoComplete } from '../components/auto-complete/auto-complete';
+import { FleeceComponent } from '../components/fleece/fleece';
 
 ReactDOM.render(
   <div>
     <Header />
-    <div>
-      <div>content</div>
-      <AutoComplete/>
-    </div>
+    <FleeceComponent />
     <Footer />
   </div>,
   document.getElementById('lcApp')

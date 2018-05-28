@@ -92,6 +92,13 @@ module.exports = {
         use: 'file-loader'
       },
       // {
+      //   test: require.resolve("moment"),
+      //   use: [{
+      //     loader: "expose-loader",
+      //     options: "moment"
+      //   }]
+      // },
+      // {
       //   test: /\.html$/,
       //   use: ['raw-loader'],
       //   exclude: /src\/app.html/,
