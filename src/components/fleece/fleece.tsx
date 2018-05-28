@@ -89,7 +89,7 @@ export class FleeceComponent extends React.Component {
         needUpdate: true
       })
     } else {
-      this.setState({
+      this.state = {
         needUpdate: false,
         profile: fleece.profile,
         public_repos: fleece.public_repos,
@@ -98,7 +98,7 @@ export class FleeceComponent extends React.Component {
         following: fleece.following,
         pageCount: fleece.pageCount,
         repos: fleece.repos
-      })
+      }
     }
   }
 
