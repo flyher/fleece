@@ -1,25 +1,51 @@
-# Fleece
-久久日记本开源项目索引站
+# fleece
 
-##### 友情链接
+[![Build Status](https://travis-ci.org/flyher/fleece.svg?branch=master)](https://travis-ci.org/flyher/fleece?branch=master)
+[![Release Version](https://img.shields.io/github/release/flyher/fleece.svg)](https://github.com/flyher/fleece/releases)
+[![Issues](https://img.shields.io/github/issues/flyher/fleece.svg)](https://github.com/flyher/fleece/issues)
+[![Software License](https://img.shields.io/github/license/flyher/fleece.svg?branch=master)](https://github.com/flyher/fleece/blob/master/LICENSE)
 
-[Fleece](https://project.99diary.com) 
+Fleece base on React, Typescript, D3, Package by Webpack.
 
-[久久日记本](https://www.99diary.com)
+You can visit this website here:
 
-[flyher@github](https://github.com/flyher)
+[Mirror 1](https://fleece.99diary.com)
 
-[flyher@bitbucket](https://bitbucket.org/flyher)
+[Mirror 2](https://www.99diary.com/fleece)
 
-[99diary@github](https://github.com/99diary)
 
-##### 开发工具
+### install
+
+
+```shell
+npm install
+```
+
+release
+
+the code will release in `./dist/`
+```
+npm run release
+```
+
+pre
+
+the code  will release in `./dist/` with sourceMap
+```shell
+npm run pre
+```
+
+Press F12 to debug
+
+### Q&A 
+
+Update from [flyher/life-cycle-react](https://github.com/flyher/life-cycle-react)
+
+
+### Tools
 
 Build By Visual Studio Code
 
-##### 开源协议
+### License
 
 Code in fleece project is licensed under the GPL
-
-
-

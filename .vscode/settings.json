@@ -1,0 +1,4 @@
+{
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false, //是否试用缩进方案代理
+}
