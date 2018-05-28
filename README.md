@@ -41,6 +41,11 @@ Press F12 to debug
 
 Update from [flyher/life-cycle-react](https://github.com/flyher/life-cycle-react)
 
+[Github API](https://developer.github.com/v3/guides/getting-started/)
+
+API for user profile: https://api.github.com/users/<author>
+
+API for user repos:  https://api.github.com/users/<author>/repos?page=<pageNO>
 
 ### Tools
 
