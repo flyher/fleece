@@ -39,13 +39,15 @@ Press F12 to debug
 
 ### Q&A 
 
-Update from [flyher/life-cycle-react](https://github.com/flyher/life-cycle-react)
+Structure by [flyher/life-cycle-react](https://github.com/flyher/life-cycle-react) and [flyher/zhihu-react-native](https://www.github.com/flyher/zhihu-react-native/)
+
+Theme by Github
 
 [Github API](https://developer.github.com/v3/guides/getting-started/)
 
-API for user profile: https://api.github.com/users/<author>
+API for user profile: `https://api.github.com/users/<author>`
 
-API for user repos:  https://api.github.com/users/<author>/repos?page=<pageNO>
+API for user repos:  `https://api.github.com/users/<author>/repos?page=<pageNO>`
 
 ### Tools
 

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import axios from 'axios';
-import { CardComponent } from '../components/card/card';
+// import { CardComponent } from '../components/card/card';
 import './fleece.less';
 import * as moment from 'moment';
+import { OrgRepoComponent } from '../components/org-repo/org-repo';
 
 export class FleeceComponent extends React.Component {
   constructor(props: any) {
@@ -63,21 +64,29 @@ export class FleeceComponent extends React.Component {
     }
     let count = 0;
     pages.forEach((page) => {
-      axios.get(page.url).then((res) => {
-        this.setState((oldState) => {
-          let temp_repos = oldState['entry']['repos'];
-          res.data.map((repo: any) => {
-            temp_repos.push(repo);
+      // axios.get(page.url)
+      axios({
+        method: 'get',
+        url: page.url,
+        // headers: {
+        //   Accept: "application/vnd.github.mercy-preview+json"
+        // }
+      })
+        .then((res) => {
+          this.setState((oldState) => {
+            let temp_repos = oldState['entry']['repos'];
+            res.data.map((repo: any) => {
+              temp_repos.push(repo);
+            })
+            oldState['entry']['repos'] = temp_repos;
+            return oldState['entry']['repos'];
           })
-          oldState['entry']['repos'] = temp_repos;
-          return oldState['entry']['repos'];
-        })
-      }).then(() => {
-        count++;
-        if (count === pageCount) {
-          this._saveStorage();
-        }
-      });
+        }).then(() => {
+          count++;
+          if (count === pageCount) {
+            this._saveStorage();
+          }
+        });
     })
   }
 
@@ -115,12 +124,15 @@ export class FleeceComponent extends React.Component {
   }
 
   render(): any {
-    let cards = this.state['entry']['repos'].map((repo: any) => {
-      return <CardComponent children={repo} />
+    // let cards = this.state['entry']['repos'].map((repo: any) => {
+    //   return <CardComponent children={repo} />
+    // });
+    let org_repos = this.state['entry']['repos'].map((repo: any) => {
+      return <OrgRepoComponent children={repo} />
     });
     return (
       <div className="fleece-component">
-        {cards}
+        {org_repos}
       </div>
     )
   }
