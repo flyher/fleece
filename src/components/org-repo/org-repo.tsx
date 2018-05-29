@@ -28,7 +28,7 @@ export class OrgRepoComponent extends React.Component {
           <span className="fork-from f6 text-gray">{this.state['orgRepo']['fork'] ? 'Forked from ' : ''}</span>
         </div>
         <div className="describe">
-          <p className="f6">{this.state['orgRepo']['description']}</p>
+          <p className="text-gray">{this.state['orgRepo']['description']}</p>
           <div>
 
           </div>

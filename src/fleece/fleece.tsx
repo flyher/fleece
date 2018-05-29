@@ -29,6 +29,7 @@ export class FleeceComponent extends React.Component {
 
   componentWillMount(): void {
     if (this.state['status']['needUpdate']) {
+      this._beginLoading();
       axios({
         method: 'get',
         url: 'https://api.github.com/users/flyher'
@@ -49,7 +50,9 @@ export class FleeceComponent extends React.Component {
         }
       })
     }
+  }
 
+  componentDidMount(): void {
   }
 
   _loadRepos(): void {
@@ -91,6 +94,7 @@ export class FleeceComponent extends React.Component {
   }
 
   _readStorage(): void {
+    this._beginLoading();
     let fleeceStorage = localStorage['fleece'];
     if (fleeceStorage === null || fleeceStorage === undefined) {
       this.setState({
@@ -112,6 +116,7 @@ export class FleeceComponent extends React.Component {
       this.state['entry'] = fleece.entry;
       this.state['status']['needUpdate'] = false;
     }
+    this._finishLoading();
   }
 
   _saveStorage(): void {
@@ -121,15 +126,40 @@ export class FleeceComponent extends React.Component {
         updateDate: moment.utc().valueOf() / 1000
       }
     });
+    this._finishLoading();
+  }
+
+  _beginLoading(): void {
+    this.setState({
+      status: {
+        isLoading: true
+      }
+    })
+  }
+
+  _finishLoading(): void {
+    this.setState({
+      status: {
+        isLoading: false
+      }
+    })
   }
 
   render(): any {
     // let cards = this.state['entry']['repos'].map((repo: any) => {
     //   return <CardComponent children={repo} />
     // });
+    let isLoading = this.state['status']['isLoading'];
     let org_repos = this.state['entry']['repos'].map((repo: any) => {
       return <OrgRepoComponent children={repo} />
     });
+    console.log(isLoading);
+    if (isLoading) {
+      return <div className="fleece-component">
+        <div className="loading"></div>
+      </div>
+    }
+
     return (
       <div className="fleece-component">
         {org_repos}

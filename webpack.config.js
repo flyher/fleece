@@ -89,7 +89,14 @@ module.exports = {
 
       {
         test: /\.(jpg|png|gif|svg|woff|woff2|eot|ttf)$/,
-        use: 'file-loader'
+        use: [
+          {
+            loader:'file-loader?name=fonts/[name].[ext]',
+            // query: {
+            //   name: 'img/[name].[ext]'
+            // }
+          }
+        ]
       },
       // {
       //   test: require.resolve("moment"),
