@@ -4,6 +4,7 @@ import { ForkedIconComponent } from '../shared/forked/forked';
 import { Config } from '../../util/config';
 import './org-repo.less';
 import { RepoLanguageColorComponent } from '../shared/repo-language-color/repo-language-color';
+import { TopicsComponent } from '../shared/topics/topics';
 
 export class OrgRepoComponent extends React.Component {
   constructor(props: any) {
@@ -17,8 +18,8 @@ export class OrgRepoComponent extends React.Component {
     let stargazers_url = Config.URL_GITHUB_HOST + '/' + this.state['orgRepo']['full_name'] + '/stargazers';
     let network_url = Config.URL_GITHUB_HOST + '/' + this.state['orgRepo']['full_name'] + '/network';
     return (
-      <div className="org-repo-component">
-        <div className="title">
+      <div className="org-repo-component py-4 border-bottom">
+        <div className="title mb-1">
           <h3 className="name">
             <a href={this.state['orgRepo']['html_url']}>
               {this.state['orgRepo']['name']}
@@ -32,21 +33,21 @@ export class OrgRepoComponent extends React.Component {
 
           </div>
         </div>
-        <div className="topics">
-          <a href="">nodejs</a>
+        <TopicsComponent/>
+        {/* <div className="topics">
+          <a className="topic-tag" href="">nodejs</a>
           <a href="">react-native</a>
-        </div>
-        <div className="focus f6 text-gray">
+        </div> */}
+        <div className="focus f6 text-gray mt-2">
           <RepoLanguageColorComponent children={this.state['orgRepo']['language']} />
-          <span>{this.state['orgRepo']['language']}</span>
-          <a href={stargazers_url} target="_blank">
-            <StarIconComponent />
-            {this.state['orgRepo']['stargazers_count']}
-          </a>
-          <a href={network_url} target="_blank">
-            <ForkedIconComponent />
-            {this.state['orgRepo']['forks_count']}
-          </a>
+          <StarIconComponent children={{
+            stargazersUrl: stargazers_url,
+            stargazersCount: this.state['orgRepo']['stargazers_count']
+          }} />
+          <ForkedIconComponent children={{
+            networkUrl: network_url,
+            forksCount: this.state['orgRepo']['forks_count']
+          }} />
         </div>
       </div>
     )
