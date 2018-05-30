@@ -5,9 +5,8 @@ import { OrgProfileComponent } from './org-profile/org-profile';
 export class OrgHeadComponent extends React.Component {
   constructor(props: any) {
     super(props);
-    let children = this.props.children;
     this.state = {
-      orgInfo: children!['orgInfo']
+      orgInfo: this.props.children
     }
   }
 

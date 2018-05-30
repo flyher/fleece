@@ -7,6 +7,7 @@
 
 export class Config {
   public static URL_GITHUB_HOST = 'https://www.github.com';
+  public static userName = 'flyher';
   public static orgInfo = {
     profile: {
       avator: 'https://avatars1.githubusercontent.com/u/9919?s=200&v=4',
@@ -18,4 +19,35 @@ export class Config {
       mail: 'test@test.com'
     }
   }
+  public static tabs = [
+    {
+      id: 1,
+      value: 'github',
+      text: 'Github',
+      link: Config.URL_GITHUB_HOST + '/' + Config.userName,
+      counter: 96,
+      selected: true
+    }, {
+      id: 2,
+      value: 'github',
+      text: 'Github',
+      link: Config.URL_GITHUB_HOST + '/' + Config.userName,
+      counter: 23,
+      selected: false
+    }, {
+      id: 3,
+      value: 'github',
+      text: 'Github',
+      link: Config.URL_GITHUB_HOST + '/' + Config.userName,
+      counter: 13,
+      selected: false
+    }, {
+      id: 4,
+      value: 'github',
+      text: 'Github',
+      link: Config.URL_GITHUB_HOST + '/' + Config.userName,
+      counter: 0,
+      selected: false
+    }
+  ]
 }

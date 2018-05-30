@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { OrgRepoComponent } from '../components/org-repo/org-repo';
 import { OrgHeadComponent } from '../components/org-head/org-head';
 import { Config } from '../util/config';
+import { TabsComponent } from '../components/tabs/tabs';
 
 export class FleeceComponent extends React.Component {
   constructor(props: any) {
@@ -26,7 +27,8 @@ export class FleeceComponent extends React.Component {
         isLoading: false
       },
       org: {
-        orgInfo: Config.orgInfo
+        orgInfo: Config.orgInfo,
+        tabs: Config.tabs
       }
     }
     this._readStorage();
@@ -168,10 +170,10 @@ export class FleeceComponent extends React.Component {
     return (
       <div className="fleece-component">
         <div className="org-head-component">
-          <OrgHeadComponent children={this.state['org']} />
+          <OrgHeadComponent children={this.state['org']['orgInfo']} />
         </div>
         <div className="pinned-repos-component">
-
+          <TabsComponent children= {this.state['org']['tabs']}/>
         </div>
         <div className="org-repos-component">
           {org_repos}
