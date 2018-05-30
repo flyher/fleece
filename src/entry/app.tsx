@@ -1,13 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import './app.less';
 
-import { Header } from '../components/shared/header'
+import { HeaderComponent } from '../components/shared/header/header'
 import { Footer } from '../components/shared/footer';
-import { FleeceComponent } from '../fleece/fleece';
+import { FleeceComponent } from '../page/fleece';
 
 ReactDOM.render(
-  <div>
-    <Header />
+  <div className="app">
+    <HeaderComponent />
     <FleeceComponent />
     <Footer />
   </div>,

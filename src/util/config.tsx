@@ -7,4 +7,15 @@
 
 export class Config {
   public static URL_GITHUB_HOST = 'https://www.github.com';
+  public static orgInfo = {
+    profile: {
+      avator: 'https://avatars1.githubusercontent.com/u/9919?s=200&v=4',
+      orgName: 'Fleece',
+      author: 'Fleece',
+      describe: 'Open source, from xx with love',
+      location: 'New York,USA',
+      link: 'https://www.test.com',
+      mail: 'test@test.com'
+    }
+  }
 }

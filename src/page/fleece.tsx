@@ -4,6 +4,8 @@ import axios from 'axios';
 import './fleece.less';
 import * as moment from 'moment';
 import { OrgRepoComponent } from '../components/org-repo/org-repo';
+import { OrgHeadComponent } from '../components/org-head/org-head';
+import { Config } from '../util/config';
 
 export class FleeceComponent extends React.Component {
   constructor(props: any) {
@@ -17,11 +19,14 @@ export class FleeceComponent extends React.Component {
         followers: 0,
         following: 0,
         pageCount: 0,
-        repos: []
+        repos: [],
       },
       status: {
         needUpdate: true,
         isLoading: false
+      },
+      org: {
+        orgInfo: Config.orgInfo
       }
     }
     this._readStorage();
@@ -156,13 +161,21 @@ export class FleeceComponent extends React.Component {
     console.log(isLoading);
     if (isLoading) {
       return <div className="fleece-component">
-        {org_repos}
+        <div className="loading"></div>
       </div>
     }
 
     return (
       <div className="fleece-component">
-        <div className="loading"></div>
+        <div className="org-head-component">
+          <OrgHeadComponent children={this.state['org']} />
+        </div>
+        <div className="pinned-repos-component">
+
+        </div>
+        <div className="org-repos-component">
+          {org_repos}
+        </div>
       </div>
     )
   }
