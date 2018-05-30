@@ -7,6 +7,7 @@ import { OrgRepoComponent } from '../components/org-repo/org-repo';
 import { OrgHeadComponent } from '../components/org-head/org-head';
 import { Config } from '../util/config';
 import { TabsComponent } from '../components/tabs/tabs';
+import { PinnedRepoComponent } from '../components/pinned-repo/pinned-repos';
 
 export class FleeceComponent extends React.Component {
   constructor(props: any) {
@@ -21,6 +22,7 @@ export class FleeceComponent extends React.Component {
         following: 0,
         pageCount: 0,
         repos: [],
+        pinned_repos: []
       },
       status: {
         needUpdate: true,
@@ -150,6 +152,18 @@ export class FleeceComponent extends React.Component {
         isLoading: false
       }
     })
+    // init test data
+    this._initTestData();
+  }
+
+  _initTestData(): void {
+    let pinned_repos: any = [];
+    this.state['entry']['repos'].forEach((repo: any, index: Number) => {
+      if (index < 6) {
+        pinned_repos.push(repo);
+      }
+    });
+    this.state['entry']['pinned_repos'] = pinned_repos;
   }
 
   render(): any {
@@ -157,10 +171,14 @@ export class FleeceComponent extends React.Component {
     //   return <CardComponent children={repo} />
     // });
     let isLoading = this.state['status']['isLoading'];
+    let pinned_repos = this.state['entry']['pinned_repos'].map((repo: any) => {
+      return <li><PinnedRepoComponent children={repo} /></li>
+    });
+
     let org_repos = this.state['entry']['repos'].map((repo: any) => {
       return <OrgRepoComponent children={repo} />
     });
-    console.log(isLoading);
+
     if (isLoading) {
       return <div className="fleece-component">
         <div className="loading"></div>
@@ -173,7 +191,8 @@ export class FleeceComponent extends React.Component {
           <OrgHeadComponent children={this.state['org']['orgInfo']} />
         </div>
         <div className="pinned-repos-component">
-          <TabsComponent children= {this.state['org']['tabs']}/>
+          <TabsComponent children={this.state['org']['tabs']} />
+          <ol>{pinned_repos}</ol>
         </div>
         <div className="org-repos-component">
           {org_repos}
