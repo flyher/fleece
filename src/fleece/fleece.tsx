@@ -156,13 +156,13 @@ export class FleeceComponent extends React.Component {
     console.log(isLoading);
     if (isLoading) {
       return <div className="fleece-component">
-        <div className="loading"></div>
+        {org_repos}
       </div>
     }
 
     return (
       <div className="fleece-component">
-        {org_repos}
+        <div className="loading"></div>
       </div>
     )
   }

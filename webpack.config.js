@@ -91,10 +91,11 @@ module.exports = {
         test: /\.(jpg|png|gif|svg|woff|woff2|eot|ttf)$/,
         use: [
           {
-            loader:'file-loader?name=fonts/[name].[ext]',
-            // query: {
-            //   name: 'img/[name].[ext]'
-            // }
+            loader: 'file-loader?name=fonts/[name].[ext]',
+            query: {
+              name: 'img/[name].[ext]',
+              publicPath: '/'
+            }
           }
         ]
       },
