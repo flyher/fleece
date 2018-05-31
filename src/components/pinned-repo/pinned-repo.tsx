@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './pinned-repos.less';
+import './pinned-repo.less';
 import { RepoLanguageColorComponent } from '../shared/repo-language-color/repo-language-color';
 import { StarIconComponent } from '../shared/star/star';
 import { ForkedIconComponent } from '../shared/forked/forked';
@@ -17,10 +17,10 @@ export class PinnedRepoComponent extends React.Component {
     let stargazers_url = Config.URL_GITHUB_HOST + this.state['pinnedRepo']['full_name'] + '/stargazers';
     let network_url = Config.URL_GITHUB_HOST + this.state['pinnedRepo']['full_name'] + '/network';
     return (
-      <div className="pinned-repo-component rounded-1 mb-3 border-gray-dark border">
+      <div className="pinned-repo-component p-3 ">
         <span className="name">{this.state['pinnedRepo']['name']}</span>
-        <p className="describe">{this.state['pinnedRepo']['description']}</p>
-        <div className="focus f6 text-gray mt-2">
+        <p className="describe pinned-repo-desc">{this.state['pinnedRepo']['description']}</p>
+        <p className="focus f6 text-gray">
           <RepoLanguageColorComponent children={this.state['pinnedRepo']['language']} />
           <StarIconComponent children={{
             stargazersUrl: stargazers_url,
@@ -30,7 +30,7 @@ export class PinnedRepoComponent extends React.Component {
             networkUrl: network_url,
             forksCount: this.state['pinnedRepo']['forks_count']
           }} />
-        </div>
+        </p>
       </div>
     );
   }

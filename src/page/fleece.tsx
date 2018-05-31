@@ -7,7 +7,7 @@ import { OrgRepoComponent } from '../components/org-repo/org-repo';
 import { OrgHeadComponent } from '../components/org-head/org-head';
 import { Config } from '../util/config';
 import { TabsComponent } from '../components/tabs/tabs';
-import { PinnedRepoComponent } from '../components/pinned-repo/pinned-repos';
+import { PinnedRepoComponent } from '../components/pinned-repo/pinned-repo';
 
 export class FleeceComponent extends React.Component {
   constructor(props: any) {
@@ -172,7 +172,7 @@ export class FleeceComponent extends React.Component {
     // });
     let isLoading = this.state['status']['isLoading'];
     let pinned_repos = this.state['entry']['pinned_repos'].map((repo: any) => {
-      return <li><PinnedRepoComponent children={repo} /></li>
+      return <li className="border-gray-dark border rounded-1"><PinnedRepoComponent children={repo} /></li>
     });
 
     let org_repos = this.state['entry']['repos'].map((repo: any) => {
