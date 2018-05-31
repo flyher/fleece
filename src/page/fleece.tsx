@@ -44,17 +44,24 @@ export class FleeceComponent extends React.Component {
         url: 'https://api.github.com/users/flyher'
       }).then((res: any) => {
         if (res.status === 200 && res.statusText === 'OK') {
-          this.setState({
-            entry: {
-              profile: res.data,
-              public_repos: res.data.public_repos,
-              public_gists: res.data.public_gists,
-              followers: res.data.followers,
-              following: res.data.following,
-              pageCount: parseInt((res.data.public_repos / 30).toString()) + (res.data.public_repos % 30 > 0 ? 1 : 0),
-              repos: []
-            }
-          })
+          // this.setState({
+          //   entry: {
+          //     profile: res.data,
+          //     public_repos: res.data.public_repos,
+          //     public_gists: res.data.public_gists,
+          //     followers: res.data.followers,
+          //     following: res.data.following,
+          //     pageCount: parseInt((res.data.public_repos / 30).toString()) + (res.data.public_repos % 30 > 0 ? 1 : 0),
+          //     repos: []
+          //   }
+          // })
+          this.state['entry']['profile'] = res.data;
+          this.state['entry']['public_repos'] = res.data.public_repos;
+          this.state['entry']['public_gists'] = res.data.public_gists;
+          this.state['entry']['followers'] = res.data.followers;
+          this.state['entry']['following'] = res.data.following;
+          this.state['entry']['pageCount'] = parseInt((res.data.public_repos / 30).toString()) + (res.data.public_repos % 30 > 0 ? 1 : 0);;
+
           this._loadRepos();
         }
       })
@@ -172,7 +179,7 @@ export class FleeceComponent extends React.Component {
     // });
     let isLoading = this.state['status']['isLoading'];
     let pinned_repos = this.state['entry']['pinned_repos'].map((repo: any) => {
-      return <li className="border-gray-dark border rounded-1"><PinnedRepoComponent children={repo} /></li>
+      return <li className="border-gray-dark border rounded-1 mb-3"><PinnedRepoComponent children={repo} /></li>
     });
 
     let org_repos = this.state['entry']['repos'].map((repo: any) => {
@@ -190,9 +197,12 @@ export class FleeceComponent extends React.Component {
         <div className="org-head-component">
           <OrgHeadComponent children={this.state['org']['orgInfo']} />
         </div>
-        <div className="pinned-repos-component">
+        <div className="pagehead-tabs-component">
           <TabsComponent children={this.state['org']['tabs']} />
-          <ol>{pinned_repos}</ol>
+        </div>
+        <div className="pinned-repos-component">
+          <h3 className="content-container">Pinned repositories </h3>
+          <ol className="content-container">{pinned_repos}</ol>
         </div>
         <div className="org-repos-component">
           {org_repos}

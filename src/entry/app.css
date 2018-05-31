@@ -1,0 +1,126 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  line-height: 1.5;
+  background-color: #fff;
+}
+body .f6 {
+  font-size: 12px !important;
+}
+body .text-gray {
+  color: #586069 !important;
+}
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+body h1 {
+  font-size: 32px;
+}
+body p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+body .py-4 {
+  padding-top: 24px !important;
+  padding-bottom: 24px !important;
+}
+body .border-bottom {
+  border-bottom: 1px #e1e4e8 solid !important;
+}
+body .mb-1 {
+  margin-bottom: 4px !important;
+}
+body .mr-3 {
+  margin-right: 16px !important;
+}
+body .mt-2 {
+  margin-top: 8px !important;
+}
+body .mb-3 {
+  margin-bottom: 16px !important;
+}
+body .d-flex {
+  display: flex !important;
+}
+body .px-2 {
+  padding-right: 8px !important;
+  padding-left: 8px !important;
+}
+body .px-3 {
+  padding-right: 16px !important;
+  padding-left: 16px !important;
+}
+body .p-3 {
+  padding: 16px !important;
+}
+body .rounded-1 {
+  border-radius: 3px !important;
+}
+body a {
+  text-decoration: none;
+  color: #586069;
+}
+body a:hover {
+  color: #0366d6;
+  fill: #0366d6;
+}
+body .octicon {
+  position: relative;
+  top: 1px;
+  margin-right: 2px;
+  fill: #ccc;
+  vertical-align: text-bottom;
+}
+body .border-gray-dark {
+  border-color: #d1d5da !important;
+}
+body .border {
+  border: 1px #e1e4e8 solid !important;
+}
+body .content-container {
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+body .hide {
+  display: none;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+ul,
+ol {
+  list-style: none;
+}

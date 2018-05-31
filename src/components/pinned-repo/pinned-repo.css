@@ -1,0 +1,8 @@
+.pinned-repo-component {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+.pinned-repo-component .pinned-repo-desc {
+  flex: 1 0 auto;
+}
