@@ -14,11 +14,15 @@ export class PinnedRepoComponent extends React.Component {
   }
 
   render() {
-    let stargazers_url = Config.URL_GITHUB_HOST + this.state['pinnedRepo']['full_name'] + '/stargazers';
-    let network_url = Config.URL_GITHUB_HOST + this.state['pinnedRepo']['full_name'] + '/network';
+    let stargazers_url = Config.URL_GITHUB_HOST + '/' + this.state['pinnedRepo']['full_name'] + '/stargazers';
+    let network_url = Config.URL_GITHUB_HOST + '/' + this.state['pinnedRepo']['full_name'] + '/network';
     return (
       <div className="pinned-repo-component p-3 ">
-        <span className="name">{this.state['pinnedRepo']['name']}</span>
+        <span className="name">
+          <a href={this.state['pinnedRepo']['html_url']} className="text-bold">
+            {this.state['pinnedRepo']['name']}
+          </a>
+        </span>
         <p className="describe pinned-repo-desc">{this.state['pinnedRepo']['description']}</p>
         <p className="focus f6 text-gray">
           <RepoLanguageColorComponent children={this.state['pinnedRepo']['language']} />

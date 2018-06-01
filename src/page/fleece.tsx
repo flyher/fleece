@@ -8,6 +8,8 @@ import { OrgHeadComponent } from '../components/org-head/org-head';
 import { Config } from '../util/config';
 import { TabsComponent } from '../components/tabs/tabs';
 import { PinnedRepoComponent } from '../components/pinned-repo/pinned-repo';
+// import { sortBy } from '../util/common';
+
 
 export class FleeceComponent extends React.Component {
   constructor(props: any) {
@@ -51,7 +53,7 @@ export class FleeceComponent extends React.Component {
   _loadProfile(): void {
     axios({
       method: 'get',
-      url: 'https://api.github.com/users/flyher'
+      url: Config.tabs[0]['api']!['profile']
     }).then((res: any) => {
       if (res.status === 200 && res.statusText === 'OK') {
         this.setState({
@@ -78,7 +80,11 @@ export class FleeceComponent extends React.Component {
       pages.push({
         id: pageNo,
         pageNo: pageNo,
-        url: 'https://api.github.com/users/flyher/repos?' + 'page=' + pageNo
+        url: Config.tabs[0]['api']!['repos']
+          + 'sort=updated' + '&'
+          + 'direction=desc' + '&'
+          + 'page=' + pageNo
+        // data: []
       })
     }
     let count = 0;
@@ -95,7 +101,10 @@ export class FleeceComponent extends React.Component {
           this.setState((oldState) => {
             let temp_repos = oldState['entry']['repos'];
             res.data.map((repo: any) => {
-              temp_repos.push(repo);
+              // person repos
+              if (!repo.fork) {
+                temp_repos.push(repo);
+              }
             })
             oldState['entry']['repos'] = temp_repos;
             return oldState['entry']['repos'];
@@ -104,7 +113,7 @@ export class FleeceComponent extends React.Component {
           count++;
           if (count === pageCount) {
             // init test data
-            this._initTestData();
+            this._initData();
             this._saveStorage();
           }
         });
@@ -113,7 +122,7 @@ export class FleeceComponent extends React.Component {
 
   _readStorage(): void {
     console.log('1');
-    let fleeceStorage = localStorage['fleece'];
+    let fleeceStorage = localStorage['flyher@github'];
     if (fleeceStorage === null || fleeceStorage === undefined) {
       this.setState({
         status: Object.assign({}, this.state['status'], { needUpdate: true })
@@ -136,14 +145,14 @@ export class FleeceComponent extends React.Component {
       this.setState({
         status: Object.assign({}, this.state['status'], { needUpdate: false })
       }, () => {
-        this._initTestData();
+        this._initData();
       });
       this._finishLoading();
     }
   }
 
   _saveStorage(): void {
-    localStorage['fleece'] = JSON.stringify({
+    localStorage['flyher@github'] = JSON.stringify({
       entry: this.state['entry'],
       status: {
         updateDate: moment.utc().valueOf() / 1000
@@ -166,34 +175,54 @@ export class FleeceComponent extends React.Component {
       });
   }
 
-  _initTestData(): void {
-    let pinned_repos: any = [];
-    this.state['entry']['repos'].forEach((repo: any, index: Number) => {
-      if (index < 6) {
-        pinned_repos.push(repo);
+  _initData(): void {
+    let githubPinned: any = [];
+    Config.tabs.forEach((tab) => {
+      if (tab.value === 'flyher@github') {
+        githubPinned = tab.pinned;
       }
     });
+
+    let pinned_repos: any = [];
+    this.state['entry']['repos'].forEach((repo: any, index: Number) => {
+      // if (index < 6) {
+      //   pinned_repos.push(repo);
+      // }
+      githubPinned.forEach((pinned: any) => {
+        if (pinned.name === repo.name) {
+          pinned_repos.push(repo);
+        }
+      });
+    });
     // test update one prop
-    this.setState({
-      test: {
-        p1: 5
-      }
-    })
+    // this.setState({
+    //   test: {
+    //     p1: 5
+    //   }
+    // })
     this.setState({
       entry: Object.assign({}, this.state['entry'], { pinned_repos: pinned_repos })
     });
 
+    let countGithubRepos = this.state['entry']['repos'].length;
+    this.state['org']['tabs'].forEach((tab: any) => {
+      if (tab['value'] === 'flyher@github') {
+        tab['counter'] = countGithubRepos;
+      }
+    });
   }
 
   render(): any {
     // let cards = this.state['entry']['repos'].map((repo: any) => {
     //   return <CardComponent children={repo} />
     // });
-    console.log(this.state['test']);
     let isLoading = this.state['status']['isLoading'];
     let pinned_repos = this.state['entry']['pinned_repos'].map((repo: any) => {
-      return <li className="border-gray-dark border rounded-1 mb-3"><PinnedRepoComponent children={repo} /></li>
+      return <li className="border-gray-dark border rounded-1 mb-3">
+        <PinnedRepoComponent children={repo} />
+      </li>
     });
+
 
     let org_repos = this.state['entry']['repos'].map((repo: any) => {
       return <OrgRepoComponent children={repo} />
@@ -215,7 +244,7 @@ export class FleeceComponent extends React.Component {
           <TabsComponent children={this.state['org']['tabs']} />
         </div>
         <div className="pinned-repos-component">
-          <h3 className="content-container">Pinned repositories </h3>
+          <h3 className="content-container">{pinned_repos.length > 0 ? 'Pinned repositories' : ''}</h3>
           <ol className="content-container">{pinned_repos}</ol>
         </div>
         <div className="org-repos-component">

@@ -22,32 +22,92 @@ export class Config {
   public static tabs = [
     {
       id: 1,
-      value: 'github',
-      text: 'Github',
-      link: Config.URL_GITHUB_HOST + '/' + Config.userName,
-      counter: 96,
+      value: 'flyher@github',
+      text: 'flyher@Github',
+      userName: 'flyher',
+      link: Config.URL_GITHUB_HOST + '/flyher',
+      counter: 0,
+      api: {
+        profile: 'https://api.github.com/users/flyher',
+        repos: 'https://api.github.com/users/flyher/repos?'
+      },
+      pinned: [
+        {
+          id: 1,
+          name: 'sheep'
+        },
+        {
+          id: 2,
+          name: 'ant-colony'
+        },
+        {
+          id: 3,
+          name: 'fleece'
+        },
+        {
+          id: 4,
+          name: 'totoro'
+        },
+        {
+          id: 5,
+          name: 'zhihu-react-native'
+        },
+        {
+          id: 6,
+          name: 'ColorPicker'
+        },
+        {
+          id: 7,
+          name: 'BlogBackup163'
+        }, {
+          id: 8,
+          name: 'shumeipai'
+        }, {
+          id: 9,
+          name: 'FivePies'
+        }
+      ],
       selected: true
     }, {
       id: 2,
-      value: 'github',
-      text: 'Github',
-      link: Config.URL_GITHUB_HOST + '/' + Config.userName,
-      counter: 23,
+      value: '99diary@github',
+      text: '99diary@Github',
+      userName: '99diary',
+      link: Config.URL_GITHUB_HOST + '/99diary',
+      counter: 0,
+      pinned: [
+        {
+          id: 1,
+          name: 'sheep'
+        },
+        {
+          id: 2,
+          name: 'ant-colony'
+        }
+      ],
       selected: false
     }, {
       id: 3,
-      value: 'github',
-      text: 'Github',
+      value: 'bitbucket',
+      text: 'Bitbucket',
       link: Config.URL_GITHUB_HOST + '/' + Config.userName,
-      counter: 13,
+      counter: 0,
       selected: false
     }, {
       id: 4,
-      value: 'github',
+      value: 'local',
+      text: 'Local',
+      link: Config.URL_GITHUB_HOST + '/' + Config.userName,
+      counter: 0,
+      selected: false
+    }, {
+      id: 5,
+      value: '',
       text: 'Github',
       link: Config.URL_GITHUB_HOST + '/' + Config.userName,
       counter: 0,
       selected: false
     }
   ]
+  public diary99 = [];
 }
