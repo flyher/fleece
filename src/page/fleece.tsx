@@ -15,8 +15,8 @@ export class FleeceComponent extends React.Component {
   constructor(props: any) {
     super(props);
     this.state = {
-      userName: 'flyher',
-      repoUrl: 'flyher@github',//local
+      userName: '99diary',
+      repoUrl: '99diary@github',//local
       api: {
         profile: 'https://api.github.com/users/{#userName}',
         repos: 'https://api.github.com/users/{#userName}/repos?'
@@ -110,7 +110,7 @@ export class FleeceComponent extends React.Component {
             let temp_repos = oldState['entry']['repos'];
             res.data.map((repo: any) => {
               // person repos
-              if (!repo.fork) {
+              if (!repo.fork && this.state['userName'] === 'flyher') {
                 temp_repos.push(repo);
               }
             })
@@ -131,6 +131,18 @@ export class FleeceComponent extends React.Component {
   _readStorage(): void {
     console.log('1');
     let fleeceStorage = localStorage[this.state['repoUrl']];
+    let cacheTabs = localStorage['cacheTabs'];
+
+    // counter cache
+    if (cacheTabs === null || cacheTabs === undefined) {
+
+    } else {
+      let tabs: any = JSON.parse('cacheTabs');
+      this.setState({
+        org: Object.assign({}, this.state['org'], { tabs: tabs })
+      });
+    }
+    // 
     if (fleeceStorage === null || fleeceStorage === undefined) {
       this.setState({
         status: Object.assign({}, this.state['status'], { needUpdate: true })
@@ -147,8 +159,6 @@ export class FleeceComponent extends React.Component {
         this._loadProfile();
       });
     } else {
-      // entry: Object.assign({}, this.state['entry'], { entry: fleece.entry })
-      // this.setState({ entry: Object.assign({}, this.state['entry'], { entry: fleece.entry }) });
       this.setState({ entry: fleece.entry });
       this.setState({
         status: Object.assign({}, this.state['status'], { needUpdate: false })
@@ -157,6 +167,7 @@ export class FleeceComponent extends React.Component {
       });
       this._finishLoading();
     }
+
   }
 
   _saveStorage(): void {
@@ -166,6 +177,7 @@ export class FleeceComponent extends React.Component {
         updateDate: moment.utc().valueOf() / 1000
       }
     });
+    localStorage['cacheTabs'] = JSON.stringify(this.state['org']['tabs']);
     this._finishLoading();
   }
 
