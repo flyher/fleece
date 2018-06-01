@@ -14,7 +14,6 @@ export class FleeceComponent extends React.Component {
     super(props);
     this.state = {
       entry: {
-        projects: [],
         profile: {},
         public_repos: 0,
         public_gists: 0,
@@ -26,49 +25,50 @@ export class FleeceComponent extends React.Component {
       },
       status: {
         needUpdate: true,
-        isLoading: false
+        isLoading: true
       },
       org: {
         orgInfo: Config.orgInfo,
         tabs: Config.tabs
+      },
+      test: {
+        p1: 1,
+        p2: 2,
+        p3: 3
       }
     }
-    this._readStorage();
+    // this._beginLoading();
   }
 
   componentWillMount(): void {
-    if (this.state['status']['needUpdate']) {
-      this._beginLoading();
-      axios({
-        method: 'get',
-        url: 'https://api.github.com/users/flyher'
-      }).then((res: any) => {
-        if (res.status === 200 && res.statusText === 'OK') {
-          // this.setState({
-          //   entry: {
-          //     profile: res.data,
-          //     public_repos: res.data.public_repos,
-          //     public_gists: res.data.public_gists,
-          //     followers: res.data.followers,
-          //     following: res.data.following,
-          //     pageCount: parseInt((res.data.public_repos / 30).toString()) + (res.data.public_repos % 30 > 0 ? 1 : 0),
-          //     repos: []
-          //   }
-          // })
-          this.state['entry']['profile'] = res.data;
-          this.state['entry']['public_repos'] = res.data.public_repos;
-          this.state['entry']['public_gists'] = res.data.public_gists;
-          this.state['entry']['followers'] = res.data.followers;
-          this.state['entry']['following'] = res.data.following;
-          this.state['entry']['pageCount'] = parseInt((res.data.public_repos / 30).toString()) + (res.data.public_repos % 30 > 0 ? 1 : 0);;
 
-          this._loadRepos();
-        }
-      })
-    }
   }
 
   componentDidMount(): void {
+    this._readStorage();
+  }
+
+  _loadProfile(): void {
+    axios({
+      method: 'get',
+      url: 'https://api.github.com/users/flyher'
+    }).then((res: any) => {
+      if (res.status === 200 && res.statusText === 'OK') {
+        this.setState({
+          'entry':
+            Object.assign({}, this.state['entry'], {
+              profile: res.data,
+              public_repos: res.data.public_repos,
+              public_gists: res.data.public_gists,
+              followers: res.data.followers,
+              following: res.data.following,
+              pageCount: parseInt((res.data.public_repos / 30).toString()) + (res.data.public_repos % 30 > 0 ? 1 : 0)
+            })
+        }, () => {
+          this._loadRepos();
+        });
+      }
+    })
   }
 
   _loadRepos(): void {
@@ -103,6 +103,8 @@ export class FleeceComponent extends React.Component {
         }).then(() => {
           count++;
           if (count === pageCount) {
+            // init test data
+            this._initTestData();
             this._saveStorage();
           }
         });
@@ -110,29 +112,34 @@ export class FleeceComponent extends React.Component {
   }
 
   _readStorage(): void {
-    this._beginLoading();
+    console.log('1');
     let fleeceStorage = localStorage['fleece'];
     if (fleeceStorage === null || fleeceStorage === undefined) {
       this.setState({
-        status: {
-          needUpdate: true
-        }
-      })
+        status: Object.assign({}, this.state['status'], { needUpdate: true })
+      }, () => {
+        this._loadProfile();
+      });
       return;
     }
     let fleece: any = JSON.parse(fleeceStorage);
     if (moment.utc().valueOf() / 1000 - fleece.updateDate > 60 * 60 * 24) {
-      // need update
       this.setState({
-        status: {
-          needUpdate: true
-        }
-      })
+        status: Object.assign({}, this.state['status'], { needUpdate: true })
+      }, () => {
+        this._loadProfile();
+      });
     } else {
-      this.state['entry'] = fleece.entry;
-      this.state['status']['needUpdate'] = false;
+      // entry: Object.assign({}, this.state['entry'], { entry: fleece.entry })
+      // this.setState({ entry: Object.assign({}, this.state['entry'], { entry: fleece.entry }) });
+      this.setState({ entry: fleece.entry });
+      this.setState({
+        status: Object.assign({}, this.state['status'], { needUpdate: false })
+      }, () => {
+        this._initTestData();
+      });
+      this._finishLoading();
     }
-    this._finishLoading();
   }
 
   _saveStorage(): void {
@@ -146,21 +153,17 @@ export class FleeceComponent extends React.Component {
   }
 
   _beginLoading(): void {
-    this.setState({
-      status: {
-        isLoading: true
-      }
-    })
+    console.log('2');
+    this.setState(Object.assign({}, this.state['status'], { isLoading: true }));
   }
 
   _finishLoading(): void {
+    console.log('3');
     this.setState({
-      status: {
-        isLoading: false
-      }
-    })
-    // init test data
-    this._initTestData();
+      status: Object.assign({}, this.state['status'], { isLoading: false })
+    },
+      () => {
+      });
   }
 
   _initTestData(): void {
@@ -170,13 +173,23 @@ export class FleeceComponent extends React.Component {
         pinned_repos.push(repo);
       }
     });
-    this.state['entry']['pinned_repos'] = pinned_repos;
+    // test update one prop
+    this.setState({
+      test: {
+        p1: 5
+      }
+    })
+    this.setState({
+      entry: Object.assign({}, this.state['entry'], { pinned_repos: pinned_repos })
+    });
+
   }
 
   render(): any {
     // let cards = this.state['entry']['repos'].map((repo: any) => {
     //   return <CardComponent children={repo} />
     // });
+    console.log(this.state['test']);
     let isLoading = this.state['status']['isLoading'];
     let pinned_repos = this.state['entry']['pinned_repos'].map((repo: any) => {
       return <li className="border-gray-dark border rounded-1 mb-3"><PinnedRepoComponent children={repo} /></li>
@@ -186,6 +199,7 @@ export class FleeceComponent extends React.Component {
       return <OrgRepoComponent children={repo} />
     });
 
+    console.log(isLoading);
     if (isLoading) {
       return <div className="fleece-component">
         <div className="loading"></div>
