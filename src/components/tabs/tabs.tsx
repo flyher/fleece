@@ -10,9 +10,14 @@ export class TabsComponent extends React.Component {
     }
   }
 
+  _onParentTabSwitch: any = () => {
+    console.log(this);
+  }
+
   render() {
-    let tabs = this.state['tabs'].map((tab: any) => {
-      return <TabComponent children={tab} />
+    let tabs: Array<any> = [];
+    this.state['tabs'].map((tab: any) => {
+      tabs.push(<TabComponent children={tab} onParentTabSwitch={this._onParentTabSwitch()} />)
     })
     return (
       <div className="tabs-component">

@@ -134,9 +134,7 @@ export class FleeceComponent extends React.Component {
     let cacheTabs = localStorage['cacheTabs'];
 
     // counter cache
-    if (cacheTabs === null || cacheTabs === undefined) {
-
-    } else {
+    if (cacheTabs !== null && cacheTabs !== undefined) {
       let tabs: any = JSON.parse('cacheTabs');
       this.setState({
         org: Object.assign({}, this.state['org'], { tabs: tabs })
@@ -257,7 +255,7 @@ export class FleeceComponent extends React.Component {
           <OrgHeadComponent children={this.state['org']['orgInfo']} />
         </div>
         <div className="pagehead-tabs-component">
-          <TabsComponent children={this.state['org']['tabs']} />
+          <TabsComponent children={this.state['org']['tabs']}/>
         </div>
         <div className="pinned-repos-component">
           <h3 className="content-container">{pinned_repos.length > 0 ? 'Pinned repositories' : ''}</h3>
