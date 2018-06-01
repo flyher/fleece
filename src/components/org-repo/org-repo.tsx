@@ -33,7 +33,7 @@ export class OrgRepoComponent extends React.Component {
 
           </div>
         </div>
-        <TopicsComponent/>
+        <TopicsComponent />
         {/* <div className="topics">
           <a className="topic-tag" href="">nodejs</a>
           <a href="">react-native</a>
@@ -48,6 +48,7 @@ export class OrgRepoComponent extends React.Component {
             networkUrl: network_url,
             forksCount: this.state['orgRepo']['forks_count']
           }} />
+          <span>last update: {(`${this.state['orgRepo']['updated_at']}`).substr(0,10)}</span>
         </div>
       </div>
     )

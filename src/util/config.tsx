@@ -28,8 +28,8 @@ export class Config {
       link: Config.URL_GITHUB_HOST + '/flyher',
       counter: 0,
       api: {
-        profile: 'https://api.github.com/users/flyher',
-        repos: 'https://api.github.com/users/flyher/repos?'
+        profile: 'https://api.github.com/users/{userName}',
+        repos: 'https://api.github.com/users/{userName}/repos?'
       },
       pinned: [
         {
@@ -75,6 +75,10 @@ export class Config {
       userName: '99diary',
       link: Config.URL_GITHUB_HOST + '/99diary',
       counter: 0,
+      api: {
+        profile: 'https://api.github.com/users/99diary',
+        repos: 'https://api.github.com/users/99diary/repos?'
+      },
       pinned: [
         {
           id: 1,
@@ -97,13 +101,6 @@ export class Config {
       id: 4,
       value: 'local',
       text: 'Local',
-      link: Config.URL_GITHUB_HOST + '/' + Config.userName,
-      counter: 0,
-      selected: false
-    }, {
-      id: 5,
-      value: '',
-      text: 'Github',
       link: Config.URL_GITHUB_HOST + '/' + Config.userName,
       counter: 0,
       selected: false

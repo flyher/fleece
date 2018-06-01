@@ -15,6 +15,12 @@ export class FleeceComponent extends React.Component {
   constructor(props: any) {
     super(props);
     this.state = {
+      userName: 'flyher',
+      repoUrl: 'flyher@github',//local
+      api: {
+        profile: 'https://api.github.com/users/{#userName}',
+        repos: 'https://api.github.com/users/{#userName}/repos?'
+      },
       entry: {
         profile: {},
         public_repos: 0,
@@ -53,7 +59,8 @@ export class FleeceComponent extends React.Component {
   _loadProfile(): void {
     axios({
       method: 'get',
-      url: Config.tabs[0]['api']!['profile']
+      // url: Config.tabs[0]['api']!['profile']
+      url: this.state['api'].profile.replace('{#userName}', this.state['userName'])
     }).then((res: any) => {
       if (res.status === 200 && res.statusText === 'OK') {
         this.setState({
@@ -80,7 +87,8 @@ export class FleeceComponent extends React.Component {
       pages.push({
         id: pageNo,
         pageNo: pageNo,
-        url: Config.tabs[0]['api']!['repos']
+        // url: Config.tabs[0]['api']!['repos']
+        url: this.state['api'].repos.replace('{#userName}', this.state['userName'])
           + 'sort=updated' + '&'
           + 'direction=desc' + '&'
           + 'page=' + pageNo
@@ -122,7 +130,7 @@ export class FleeceComponent extends React.Component {
 
   _readStorage(): void {
     console.log('1');
-    let fleeceStorage = localStorage['flyher@github'];
+    let fleeceStorage = localStorage[this.state['repoUrl']];
     if (fleeceStorage === null || fleeceStorage === undefined) {
       this.setState({
         status: Object.assign({}, this.state['status'], { needUpdate: true })
@@ -152,7 +160,7 @@ export class FleeceComponent extends React.Component {
   }
 
   _saveStorage(): void {
-    localStorage['flyher@github'] = JSON.stringify({
+    localStorage[this.state['repoUrl']] = JSON.stringify({
       entry: this.state['entry'],
       status: {
         updateDate: moment.utc().valueOf() / 1000
@@ -177,36 +185,32 @@ export class FleeceComponent extends React.Component {
 
   _initData(): void {
     let githubPinned: any = [];
+
+    // tab counter
     Config.tabs.forEach((tab) => {
-      if (tab.value === 'flyher@github') {
+      tab.selected = false;
+      if (tab.value === this.state['repoUrl']) {
         githubPinned = tab.pinned;
+        tab.selected = true;
       }
     });
 
     let pinned_repos: any = [];
     this.state['entry']['repos'].forEach((repo: any, index: Number) => {
-      // if (index < 6) {
-      //   pinned_repos.push(repo);
-      // }
       githubPinned.forEach((pinned: any) => {
         if (pinned.name === repo.name) {
           pinned_repos.push(repo);
         }
       });
     });
-    // test update one prop
-    // this.setState({
-    //   test: {
-    //     p1: 5
-    //   }
-    // })
+
     this.setState({
       entry: Object.assign({}, this.state['entry'], { pinned_repos: pinned_repos })
     });
 
     let countGithubRepos = this.state['entry']['repos'].length;
     this.state['org']['tabs'].forEach((tab: any) => {
-      if (tab['value'] === 'flyher@github') {
+      if (tab['value'] === this.state['repoUrl']) {
         tab['counter'] = countGithubRepos;
       }
     });
