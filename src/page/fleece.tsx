@@ -14,8 +14,8 @@ export class FleeceComponent extends React.Component {
   constructor(props: any) {
     super(props);
     this.state = {
-      userName: '99diary',
-      repoUrl: '99diary@github',//local
+      userName: 'flyher',
+      repoUrl: 'flyher@github',//local
       api: {
         profile: 'https://api.github.com/users/{#userName}',
         repos: 'https://api.github.com/users/{#userName}/repos?'
@@ -228,16 +228,22 @@ export class FleeceComponent extends React.Component {
     })
 
     let countGithubRepos = this.state['entry']['repos'].length;
-    this.state['org']['tabs'].forEach((tab: any) => {
+    let temp_tabs = this.state['org']['tabs'];
+    temp_tabs.forEach((tab: any) => {
       if (tab['value'] === this.state['repoUrl']) {
         tab['counter'] = countGithubRepos;
       }
     });
+    // update tab counter
+    this.setState({
+      org: Object.assign({}, this.state['org'], { tabs: temp_tabs })
+    })
   }
 
   _onParentReLoad(tab: any): void {
     // console.log(tab);
     // console.log(this);
+    this._beginLoading();//??????? cannot loading
     this.setState({
       userName: tab.userName,
       repoUrl: tab.value
