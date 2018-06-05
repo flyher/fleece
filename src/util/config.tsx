@@ -82,11 +82,14 @@ export class Config {
       pinned: [
         {
           id: 1,
-          name: 'sheep'
+          name: 'diary365-react-native'
         },
         {
           id: 2,
-          name: 'ant-colony'
+          name: 'rss-react-native'
+        }, {
+          id: 3,
+          name: 'mdblog'
         }
       ],
       selected: false
