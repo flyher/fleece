@@ -95,6 +95,7 @@ export class FleeceComponent extends React.Component {
       })
     }
     let count = 0;
+    let temp_repos: Array<any> = [];
     pages.forEach((page) => {
       // axios.get(page.url)
       axios({
@@ -105,21 +106,24 @@ export class FleeceComponent extends React.Component {
         // }
       })
         .then((res) => {
-          this.setState((oldState) => {
-            let temp_repos = oldState['entry']['repos'];
-            res.data.map((repo: any) => {
-              // person repos
-              if (!repo.fork && repo.owner.login === this.state['userName']) {
-                temp_repos.push(repo);
-              }
-            })
-            oldState['entry']['repos'] = temp_repos;
-            return oldState['entry']['repos'];
+          // this.setState((oldState) => {
+          //   let temp_repos = oldState['entry']['repos'];
+          res.data.map((repo: any) => {
+            // person repos
+            if (!repo.fork && repo.owner.login === this.state['userName']) {
+              temp_repos.push(repo);
+            }
           })
+          //   oldState['entry']['repos'] = temp_repos;
+          //   return oldState['entry']['repos'];
+          // })
         }).then(() => {
           count++;
           if (count === pageCount) {
             // init test data
+            this.setState({
+              entry: Object.assign({}, this.state['entry'], { repos: temp_repos })
+            });
             this._initData();
             this._saveStorage();
           }
@@ -247,6 +251,8 @@ export class FleeceComponent extends React.Component {
     // let cards = this.state['entry']['repos'].map((repo: any) => {
     //   return <CardComponent children={repo} />
     // });
+    console.log(this.state['entry']['repos']);
+
     let isLoading = this.state['status']['isLoading'];
     let pinned_repos = this.state['entry']['pinned_repos'].map((repo: any) => {
       return <li className="border-gray-dark border rounded-1 mb-3" key={'pinned-repo' + repo.node_id} >
