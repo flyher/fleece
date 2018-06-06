@@ -13,9 +13,18 @@ You can visit this website here:
 
 [Mirror 2](https://www.99diary.com/fleece)
 
+### todo list
+
+- [x] github repos list
+
+- [x] support local storage
+
+- [x] support mobile screen
+
+- [ ] programming language proportional statistics
+
 
 ### install
-
 
 ```shell
 npm install
