@@ -7,6 +7,7 @@
 
 export class Config {
   public static URL_GITHUB_HOST = 'https://www.github.com';
+  public static URL_BITBUCKET_HOST = 'https://www.bitbucket.org';
   public static userName = 'flyher';
   public static orgInfo = {
     profile: {
@@ -100,7 +101,7 @@ export class Config {
       value: 'bitbucket',
       text: 'Bitbucket',
       userName: 'flyher',
-      link: Config.URL_GITHUB_HOST + '/' + Config.userName,
+      link: Config.URL_BITBUCKET_HOST + '/' + Config.userName,
       counter: 0,
       private: true,
       api: {

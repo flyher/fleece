@@ -59,7 +59,6 @@ export class FleeceComponent extends React.Component {
 
   _loadProfile(): void {
     if (this.state['private']) {
-
       return;
     }
     axios({
@@ -282,6 +281,23 @@ export class FleeceComponent extends React.Component {
     if (isLoading) {
       return <div className="fleece-component">
         <div className="loading"></div>
+      </div>
+    }
+
+    if (this.state['private']) {
+      return <div className="fleece-component">
+        <div className="org-head-component">
+          <OrgHeadComponent children={this.state['org']['orgInfo']} />
+        </div>
+        <div className="pagehead-tabs-component">
+          <TabsComponent
+            children={this.state['org']['tabs']}
+            _onParentReLoad={this._onParentReLoad.bind(this)}
+          />
+        </div>
+        <div className="pinned-repos-component">
+          <div className="private content-container">We cannot load private project.</div>
+        </div>
       </div>
     }
 
