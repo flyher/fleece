@@ -5,11 +5,11 @@
   color: rgba(255,255,255,0.75);
   background-color: #24292e;
 
-  .container{
+  .content-container{
     display: flex !important;
-    max-width: 1012px;
-    margin-right: auto;
-    margin-left: auto;
+    // max-width: 1012px;
+    // margin-right: auto;
+    // margin-left: auto;
     height: 28px;
     box-sizing: border-box;
     .header-logo{
@@ -50,6 +50,14 @@
           }
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .header-component{
+    .header-menu{
+      display: none;
     }
   }
 }

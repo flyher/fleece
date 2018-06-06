@@ -8,6 +8,7 @@ import { OrgHeadComponent } from '../components/org-head/org-head';
 import { Config } from '../util/config';
 import { TabsComponent } from '../components/tabs/tabs';
 import { PinnedRepoComponent } from '../components/pinned-repo/pinned-repo';
+import { sortBy } from '../util/common';
 // import { sortBy } from '../util/common';
 
 export class FleeceComponent extends React.Component {
@@ -58,7 +59,7 @@ export class FleeceComponent extends React.Component {
 
   _loadProfile(): void {
     if (this.state['private']) {
-      
+
       return;
     }
     axios({
@@ -272,7 +273,9 @@ export class FleeceComponent extends React.Component {
       </li>
     });
 
-    let org_repos = this.state['entry']['repos'].map((repo: any) => {
+    let org_repos_ = this.state['entry']['repos'].sort(sortBy('updated_at', false));
+
+    let org_repos = org_repos_.map((repo: any) => {
       return <OrgRepoComponent children={repo} key={'org-repo-' + repo.node_id} />
     });
 
@@ -297,7 +300,7 @@ export class FleeceComponent extends React.Component {
           <h3 className="content-container">{pinned_repos.length > 0 ? 'Pinned repositories' : ''}</h3>
           <ol className="content-container">{pinned_repos}</ol>
         </div>
-        <div className="org-repos-component">
+        <div className="org-repos-component content-container">
           {org_repos}
         </div>
       </div>

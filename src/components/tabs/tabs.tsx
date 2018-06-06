@@ -40,7 +40,7 @@ export class TabsComponent extends React.Component<Props, {}> {
     })
 
     return (
-      <div className="tabs-component">
+      <div className="tabs-component content-container">
         {tabs}
       </div>
     );

@@ -12,7 +12,7 @@ export class OrgHeadComponent extends React.Component {
 
   render() {
     return (
-      <div className="org-head">
+      <div className="org-head content-container">
         <div className="container">
           <OrgProfileComponent children={this.state['orgInfo']['profile']} />
         </div>
