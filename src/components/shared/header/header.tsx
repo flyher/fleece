@@ -1,29 +1,13 @@
 import * as React from 'react';
 import './header.less';
+import { Config } from '../../../util/config';
 
 export class HeaderComponent extends React.Component {
   constructor(props: any) {
     super(props);
     this.state = {
       entry: {
-        menus: [
-          {
-            id: 1,
-            value: 'github',
-            text: 'Github',
-            url: 'https://www.github.com/'
-          }, {
-            id: 2,
-            value: 'issues',
-            text: 'Issues',
-            url: 'https://www.github.com/'
-          }, {
-            id: 3,
-            value: 'explore',
-            text: 'Explore',
-            url: 'https://www.github.com/'
-          },
-        ]
+        menus: Config.headerMenu
       }
     };
   }

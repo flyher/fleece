@@ -9,12 +9,26 @@ export class Config {
   public static URL_GITHUB_HOST = 'https://www.github.com';
   public static URL_BITBUCKET_HOST = 'https://www.bitbucket.org';
   public static userName = 'flyher';
+
+  public static headerMenu = [
+    {
+      id: 1,
+      value: 'fleece',
+      text: 'Fleece',
+      url: 'https://fleece.99diary.com/'
+    }, {
+      id: 2,
+      value: '99diary',
+      text: '99diary',
+      url: 'https://www.99diary.com/'
+    }];
+
   public static orgInfo = {
     profile: {
       avator: 'https://avatars1.githubusercontent.com/u/9919?s=200&v=4',
       orgName: 'Fleece',
       author: 'flyher',
-      describe: 'Open source, from xx with love',
+      describe: 'Open source for public project',
       location: 'ShangHai,China',
       link: 'https://www.99diary.com',
       mail: 'admin#99dairy.com'
