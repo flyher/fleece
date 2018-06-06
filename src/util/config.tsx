@@ -12,11 +12,11 @@ export class Config {
     profile: {
       avator: 'https://avatars1.githubusercontent.com/u/9919?s=200&v=4',
       orgName: 'Fleece',
-      author: 'Fleece',
+      author: 'flyher',
       describe: 'Open source, from xx with love',
-      location: 'New York,USA',
-      link: 'https://www.test.com',
-      mail: 'test@test.com'
+      location: 'ShangHai,China',
+      link: 'https://www.99diary.com',
+      mail: 'admin#99dairy.com'
     }
   }
   public static tabs = [
@@ -27,6 +27,7 @@ export class Config {
       userName: 'flyher',
       link: Config.URL_GITHUB_HOST + '/flyher',
       counter: 0,
+      private: false,
       api: {
         profile: 'https://api.github.com/users/{userName}',
         repos: 'https://api.github.com/users/{userName}/repos?'
@@ -75,9 +76,10 @@ export class Config {
       userName: '99diary',
       link: Config.URL_GITHUB_HOST + '/99diary',
       counter: 0,
+      private: false,
       api: {
-        profile: 'https://api.github.com/users/99diary',
-        repos: 'https://api.github.com/users/99diary/repos?'
+        profile: 'https://api.github.com/users/{userName}',
+        repos: 'https://api.github.com/users/{userName}/repos?'
       },
       pinned: [
         {
@@ -97,8 +99,13 @@ export class Config {
       id: 3,
       value: 'bitbucket',
       text: 'Bitbucket',
+      userName: 'flyher',
       link: Config.URL_GITHUB_HOST + '/' + Config.userName,
       counter: 0,
+      private: true,
+      api: {
+        repos: 'https://api.bitbucket.org/2.0/repositories/{userName}'
+      },
       selected: false
     }, {
       id: 4,
@@ -106,8 +113,8 @@ export class Config {
       text: 'Local',
       link: Config.URL_GITHUB_HOST + '/' + Config.userName,
       counter: 0,
+      private: true,
       selected: false
     }
   ]
-  public diary99 = [];
 }

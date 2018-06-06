@@ -16,6 +16,7 @@ export class FleeceComponent extends React.Component {
     this.state = {
       userName: 'flyher',
       repoUrl: 'flyher@github',//local
+      private: false,
       api: {
         profile: 'https://api.github.com/users/{#userName}',
         repos: 'https://api.github.com/users/{#userName}/repos?'
@@ -56,6 +57,10 @@ export class FleeceComponent extends React.Component {
   }
 
   _loadProfile(): void {
+    if (this.state['private']) {
+      
+      return;
+    }
     axios({
       method: 'get',
       // url: Config.tabs[0]['api']!['profile']
@@ -246,7 +251,8 @@ export class FleeceComponent extends React.Component {
     this._beginLoading();//??????? cannot loading
     this.setState({
       userName: tab.userName,
-      repoUrl: tab.value
+      repoUrl: tab.value,
+      private: tab.private
     }, () => {
       this._readStorage();
     })

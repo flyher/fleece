@@ -4,7 +4,7 @@ import { ForkedIconComponent } from '../shared/forked/forked';
 import { Config } from '../../util/config';
 import './org-repo.less';
 import { RepoLanguageColorComponent } from '../shared/repo-language-color/repo-language-color';
-import { TopicsComponent } from '../shared/topics/topics';
+// import { TopicsComponent } from '../shared/topics/topics';
 
 export class OrgRepoComponent extends React.Component {
   constructor(props: any) {
@@ -33,7 +33,7 @@ export class OrgRepoComponent extends React.Component {
 
           </div>
         </div>
-        <TopicsComponent />
+        {/* <TopicsComponent /> */}
         {/* <div className="topics">
           <a className="topic-tag" href="">nodejs</a>
           <a href="">react-native</a>
