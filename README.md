@@ -59,7 +59,7 @@ API for user profile: `https://api.github.com/users/<author>`
 API for user repos:  `https://api.github.com/users/<author>/repos?page=<pageNO>`
 
 
-There has some different in tsx and jsx, i will write a blog in future to explain it.
+There has some different between `tsx` and `jsx`, i will write a blog in future to explain it.
 
 
 ### Tools
