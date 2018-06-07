@@ -13,11 +13,17 @@ export class Config {
   public static headerMenu = [
     {
       id: 1,
+      value: 'oldFleece',
+      text: 'Old Fleece',
+      url: '/old/index.html'
+    },
+    {
+      id: 2,
       value: 'fleece',
       text: 'Fleece',
       url: 'https://fleece.99diary.com/'
     }, {
-      id: 2,
+      id: 3,
       value: '99diary',
       text: '99diary',
       url: 'https://www.99diary.com/'
@@ -25,7 +31,7 @@ export class Config {
 
   public static orgInfo = {
     profile: {
-      avator: 'https://avatars1.githubusercontent.com/u/9919?s=200&v=4',
+      avator: 'https://avatars3.githubusercontent.com/u/5570324?s=460&v=4',
       orgName: 'Fleece',
       author: 'flyher',
       describe: 'Open source for public project',
