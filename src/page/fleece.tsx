@@ -158,13 +158,15 @@ export class FleeceComponent extends React.Component {
       return;
     }
     let fleece: any = JSON.parse(fleeceStorage);
-    if (moment.utc().valueOf() / 1000 - fleece.updateDate > 60 * 60 * 24) {
+    if (moment.utc().valueOf() / 1000 - fleece.status.updateDate > 60 * 60 * 24) {
+      console.log('read from remote');
       this.setState({
         status: Object.assign({}, this.state['status'], { needUpdate: true })
       }, () => {
         this._loadProfile();
       });
     } else {
+      console.log('read from localstorage');
       this.setState({ entry: fleece.entry });
       this.setState({
         status: Object.assign({}, this.state['status'], { needUpdate: false })
@@ -263,7 +265,7 @@ export class FleeceComponent extends React.Component {
     // let cards = this.state['entry']['repos'].map((repo: any) => {
     //   return <CardComponent children={repo} />
     // });
-    console.log(this.state['entry']['repos']);
+    // console.log(this.state['entry']['repos']);
 
     let isLoading = this.state['status']['isLoading'];
     let pinned_repos = this.state['entry']['pinned_repos'].map((repo: any) => {
