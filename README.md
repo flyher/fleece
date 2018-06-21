@@ -62,6 +62,8 @@ API for user repos:  `https://api.github.com/users/<author>/repos?page=<pageNO>`
 There has some different between `tsx` and `jsx`, i will write a blog in future to explain it.
 
 
+[Tapable.plugin is deprecated. Use new API on `.hooks` instead](https://github.com/webpack/webpack/issues/6568)
+
 ### Tools
 
 Build By Visual Studio Code
