@@ -9,6 +9,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 
+// 跟踪waring提示的堆栈原因
+// https://github.com/webpack/webpack/issues/6568
+process.traceDeprecation = true; 
+
 module.exports = {
   // context: ROOT,
   // devServer: {
