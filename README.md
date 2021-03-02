@@ -1,73 +1,70 @@
-# fleece
+# Getting Started with Create React App
 
-[![Build Status](https://travis-ci.org/flyher/fleece.svg?branch=master)](https://travis-ci.org/flyher/fleece?branch=master)
-[![Release Version](https://img.shields.io/github/release/flyher/fleece.svg)](https://github.com/flyher/fleece/releases)
-[![Issues](https://img.shields.io/github/issues/flyher/fleece.svg)](https://github.com/flyher/fleece/issues)
-[![Software License](https://img.shields.io/github/license/flyher/fleece.svg?branch=master)](https://github.com/flyher/fleece/blob/master/LICENSE)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Fleece base on React, Typescript, D3, Package by Webpack.
+## Available Scripts
 
-You can visit this website here:
+In the project directory, you can run:
 
-[Mirror 1](https://fleece.99diary.com)
+### `npm start`
 
-[Mirror 2](https://www.99diary.com/fleece)
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### todo list
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-- [x] github repos list
+### `npm test`
 
-- [x] support local storage
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-- [x] support mobile screen
+### `npm run build`
 
-- [ ] programming language proportional statistics
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-### install
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-```shell
-npm install
-```
+### `npm run eject`
 
-release
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-the code will release in `./dist/`
-```
-npm run release
-```
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-pre
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-the code  will release in `./dist/` with sourceMap
-```shell
-npm run pre
-```
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-Press F12 to debug
+## Learn More
 
-### Q&A 
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-Structure by [flyher/life-cycle-react](https://github.com/flyher/life-cycle-react) and [flyher/zhihu-react-native](https://www.github.com/flyher/zhihu-react-native/)
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-Theme by Github
+### Code Splitting
 
-[Github API](https://developer.github.com/v3/guides/getting-started/)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-API for user profile: `https://api.github.com/users/<author>`
+### Analyzing the Bundle Size
 
-API for user repos:  `https://api.github.com/users/<author>/repos?page=<pageNO>`
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
+### Making a Progressive Web App
 
-There has some different between `tsx` and `jsx`, i will write a blog in future to explain it.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
+### Advanced Configuration
 
-[Tapable.plugin is deprecated. Use new API on `.hooks` instead](https://github.com/webpack/webpack/issues/6568)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Tools
+### Deployment
 
-Build By Visual Studio Code
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### License
+### `npm run build` fails to minify
 
-Code in fleece project is licensed under the GPL
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
