@@ -38,7 +38,7 @@ export class Config {
       author: Config.userName,
       describe: 'Open source for public project',
       location: 'xx,China',
-      link: 'https://www.xxx.com',
+      link: 'https://blog.99diary.com/2021/03/02/the-refactor-for-fleece',
       mail: 'admin#xxx.com'
     }
   }

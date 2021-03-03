@@ -25,7 +25,7 @@ export class FooterComponent extends React.Component {
         <div className="content-container">
           <span className="copyright">
             &copy; {this.state['start']}-{this.state['end']} By &nbsp;
-            <a href="https://www.github.com/flyher/fleece">test</a>. All rights reserved.
+            <a href="https://www.github.com/flyher/fleece">fleece</a>. All rights reserved.
           </span>
           <span className="logo"></span>
           <span className="links">
