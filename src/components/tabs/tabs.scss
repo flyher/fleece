@@ -1,0 +1,13 @@
+.tabs-component {
+  color: #666;
+  display: flex;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .tabs-component {
+    display: table;
+  }
+}
