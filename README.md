@@ -31,8 +31,6 @@ npm install
 
 release
 
-the code will release in `./dist/`
-
 ```
 npm run build
 ```
